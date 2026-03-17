@@ -17,7 +17,7 @@ export default function AuthPage() {
     try {
       let res
       if (isLogin) {
-        res = await login(form.username, form.password)
+        res = await login(form.email, form.password)
       } else {
         res = await register(form.username, form.email, form.password)
       }
@@ -128,28 +128,14 @@ export default function AuthPage() {
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div>
-            <label style={{ fontSize: '13px', color: '#a0a0b0', marginBottom: '6px', display: 'block' }}>用户名</label>
-            <input
-              type="text"
-              value={form.username}
-              onChange={(e) => setForm({ ...form, username: e.target.value })}
-              placeholder="输入用户名"
-              required
-              style={inputStyle}
-              onFocus={(e) => e.target.style.borderColor = '#7c3aed'}
-              onBlur={(e) => e.target.style.borderColor = 'rgba(124,58,237,0.3)'}
-            />
-          </div>
-
           {!isLogin && (
             <div>
-              <label style={{ fontSize: '13px', color: '#a0a0b0', marginBottom: '6px', display: 'block' }}>邮箱</label>
+              <label style={{ fontSize: '13px', color: '#a0a0b0', marginBottom: '6px', display: 'block' }}>用户名</label>
               <input
-                type="email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder="输入邮箱"
+                type="text"
+                value={form.username}
+                onChange={(e) => setForm({ ...form, username: e.target.value })}
+                placeholder="输入用户名"
                 required
                 style={inputStyle}
                 onFocus={(e) => e.target.style.borderColor = '#7c3aed'}
@@ -157,6 +143,20 @@ export default function AuthPage() {
               />
             </div>
           )}
+
+          <div>
+            <label style={{ fontSize: '13px', color: '#a0a0b0', marginBottom: '6px', display: 'block' }}>邮箱</label>
+            <input
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              placeholder="输入邮箱"
+              required
+              style={inputStyle}
+              onFocus={(e) => e.target.style.borderColor = '#7c3aed'}
+              onBlur={(e) => e.target.style.borderColor = 'rgba(124,58,237,0.3)'}
+            />
+          </div>
 
           <div>
             <label style={{ fontSize: '13px', color: '#a0a0b0', marginBottom: '6px', display: 'block' }}>密码</label>

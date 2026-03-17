@@ -39,7 +39,7 @@ export const useChatStore = create((set, get) => ({
       )
       const data = response.data
       const assistantMessage = {
-        id: Date.now() + 1,
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
         role: 'assistant',
         content: data.message || data.response || '',
         timestamp: new Date().toISOString(),
@@ -55,7 +55,7 @@ export const useChatStore = create((set, get) => ({
         messages: [
           ...state.messages,
           {
-            id: Date.now() + 1,
+            id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
             role: 'assistant',
             content: '抱歉，我暂时无法回应，请稍后再试。',
             timestamp: new Date().toISOString(),
