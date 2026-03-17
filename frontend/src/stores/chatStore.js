@@ -39,10 +39,10 @@ export const useChatStore = create((set, get) => ({
       )
       const data = response.data
       const assistantMessage = {
-        id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        id: data.message?.id || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
         role: 'assistant',
-        content: data.message || data.response || '',
-        timestamp: new Date().toISOString(),
+        content: data.message?.content || data.response || '',
+        timestamp: data.message?.timestamp || new Date().toISOString(),
         character: selectedCharacter,
       }
       set((state) => ({
